@@ -15,18 +15,11 @@
         "groups": [
           {
             "group": "Getting started",
-            "pages": [
-              "index",
-              "quickstart",
-              "development"
-            ]
+            "pages": ["index", "quickstart", "development"]
           },
           {
             "group": "Customization",
-            "pages": [
-              "essentials/settings",
-              "essentials/navigation"
-            ]
+            "pages": ["essentials/settings", "essentials/navigation"]
           },
           {
             "group": "Writing content",
@@ -52,17 +45,14 @@
         "groups": [
           {
             "group": "API documentation",
-            "pages": [
-              "api-reference/introduction"
-            ]
+            "openapi": "api-reference/openapi.yaml"
           },
           {
-            "group": "Endpoint examples",
+            "group": "Social Impact Ethics Engine API",
             "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "api-reference/presignedUrl",
+              "api-reference/getAnalysisResults",
+              "api-reference/submitSocialMediaContentForAnalysis"
             ]
           }
         ]
