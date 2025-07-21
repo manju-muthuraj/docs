@@ -1,8 +1,9 @@
 openapi: 3.1.0
+
 info:
   title: Social Impact & Ethics Engine API
   version: 1.0.0
-  description: API for submitting social media content for analysis and retrieving results.
+  description: API for submitting social‑media content for analysis and retrieving results.
 
 servers:
   - url: YOUR_API_GATEWAY_URL
@@ -11,7 +12,7 @@ servers:
 paths:
   /upload-url:
     get:
-      summary: Get a pre-signed S3 upload URL
+      summary: Get a pre‑signed S3 upload URL
       operationId: getUploadUrl
       parameters:
         - name: fileName
@@ -27,8 +28,8 @@ paths:
             type: string
           description: The MIME type of the file (e.g., image/jpeg, video/mp4).
       responses:
-        '200':
-          description: Successfully generated pre-signed URL.
+        "200":
+          description: Successfully generated pre‑signed URL.
           content:
             application/json:
               schema:
@@ -36,20 +37,20 @@ paths:
                 properties:
                   url:
                     type: string
-                    description: The pre-signed URL for direct S3 upload.
+                    description: The pre‑signed URL for direct S3 upload.
                   fields:
                     type: object
                     description: Form fields required for the S3 POST upload.
-        '400':
+        "400":
           description: Missing query parameters.
-        '500':
+        "500":
           description: Internal server error.
       security:
         - CognitoAuthorizer: []
 
   /submit:
     post:
-      summary: Submit social media content for analysis
+      summary: Submit social‑media content for analysis
       operationId: submitContent
       requestBody:
         required: true
@@ -78,11 +79,12 @@ paths:
                 postId: unique-post-id-123
                 userId: user-abc
                 text: This is a great day! Feeling positive and inclusive.
-                mediaUrls: ["s3://your-bucket-name/your-image.jpg"]
+                mediaUrls:
+                  - s3://your-bucket-name/your-image.jpg
       responses:
-        '200':
+        "200":
           description: Post submitted for analysis.
-        '500':
+        "500":
           description: Internal server error.
       security:
         - CognitoAuthorizer: []
@@ -99,12 +101,12 @@ paths:
             type: string
           description: The unique identifier of the post.
       responses:
-        '200':
+        "200":
           description: Successfully retrieved analysis results.
           content:
             application/json:
               schema:
-                type: object # Replace with actual AnalysisResult schema if desired
+                type: object
                 properties:
                   postId:
                     type: string
@@ -116,19 +118,20 @@ paths:
                     type: array
                     items:
                       type: string
-        '404':
+        "404":
           description: Results not found.
-        '500':
+        "500":
           description: Internal server error.
       security:
         - CognitoAuthorizer: []
 
-securitySchemes:
-  CognitoAuthorizer:
-    type: http
-    scheme: bearer
-    bearerFormat: JWT
-    description: |-
-      Authentication using AWS Cognito User Pool ID Token.
-      Obtain a token by signing in with your Cognito user.
-      The token should be included in the Authorization header as `Bearer <ID_TOKEN>`.
+components:
+  securitySchemes:
+    CognitoAuthorizer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: |
+        Authentication using AWS Cognito User‑Pool ID token.
+        Sign in with your Cognito user to obtain an ID token, then
+        pass it in the `Authorization` header as `Bearer <ID_TOKEN>`.
