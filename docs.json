@@ -44,10 +44,6 @@
         "tab": "API reference",
         "groups": [
           {
-            "group": "API documentation",
-            "openapi": "api-reference/openapi.yaml"
-          },
-          {
             "group": "Social Impact Ethics Engine API",
             "pages": [
               "api-reference/presignedUrl",
